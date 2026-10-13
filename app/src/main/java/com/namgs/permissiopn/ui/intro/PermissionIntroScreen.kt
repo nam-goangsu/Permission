@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlin.collections.isNotEmpty
 import kotlin.collections.lastIndex
+
 @Composable
 fun PermissionIntroScreen(
     onNavigateToMain: () -> Unit,
@@ -69,7 +70,7 @@ fun PermissionIntroScreen(
         ) {
             viewModel.onPermissionResult()
         }
-
+    // 설정 앱에서 돌아왔을 때 권한을 다시 확인합니다.
     LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
         viewModel.refreshPermissions()
     }
@@ -112,32 +113,7 @@ fun PermissionIntroScreen(
             }
         }
     }
-/*    LaunchedEffect(
-        pagerState.currentPage,
-        pagerState.isScrollInProgress,
-        uiState.showPermissions
-    ) {
-        if (
-            !uiState.showPermissions &&
-            !pagerState.isScrollInProgress
-        ) {
-            val page = pagerState.currentPage
-            val duration = slides[page].durationMillis
 
-            delay(duration.coerceAtLeast(0L))
-
-            if (
-                !pagerState.isScrollInProgress &&
-                pagerState.currentPage == page
-            ) {
-                if (page == slides.lastIndex) {
-                    viewModel.showPermissionScreen()
-                } else {
-                    pagerState.animateScrollToPage(page + 1)
-                }
-            }
-        }
-    }*/
 
     Surface(modifier = Modifier.fillMaxSize()) {
         if (uiState.showPermissions) {
