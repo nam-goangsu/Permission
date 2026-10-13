@@ -36,6 +36,9 @@ android {
 }
 
 dependencies {
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
     implementation("androidx.compose.foundation:foundation")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
